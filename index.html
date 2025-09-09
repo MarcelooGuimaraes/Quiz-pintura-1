@@ -20,7 +20,6 @@
     --warn: #d97706;
     --shadow: 0 6px 20px rgba(0,0,0,.08);
     --radius: 16px;
-    --focus: 0 0 0 3px rgba(11,83,148,.4);
     --transition: .25s ease;
     --fontScale: 1;
   }
@@ -31,7 +30,6 @@
     --muted: #9ca3af;
     --shadow: 0 6px 20px rgba(0,0,0,.5);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body{
@@ -42,7 +40,6 @@
     font-size: calc(16px * var(--fontScale));
     transition: background var(--transition), color var(--transition);
   }
-
   header{
     position: sticky; top:0; z-index:10;
     background: var(--brand1); color:white;
@@ -55,7 +52,6 @@
   .logo-img{ height:50px; border-radius:8px; }
   h1{ font-size: clamp(18px, 3.2vw, 28px); font-weight:800; }
   .muted { font-weight:400; font-size:.85em; color:#cfe8ff; }
-
   .controls{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
   .btn{
     border:1px solid #e5e7eb; color:var(--ink); background:#f9fafb;
@@ -69,18 +65,13 @@
   .btn.primary{ background: linear-gradient(135deg, var(--brand1), var(--brand2)); border:none; color:white; }
   .btn.good{ background: linear-gradient(135deg, #16a34a, #22c55e); border:none; color:white; }
   .btn.warn{ background: linear-gradient(135deg, #d97706, #f59e0b); border:none; color:white; }
-
   select.lang{ appearance:none; border:1px solid #e5e7eb; background:#f9fafb; color:var(--ink); padding:10px 14px; border-radius:12px; font-weight:600; }
   body.dark select.lang{ background:#334155; border-color:#475569; color:#f3f4f6; }
-
   .wrap{ max-width: 1000px; margin:0 auto; padding: 22px 18px; }
-
   .card{ background: var(--card); border:1px solid #e5e7eb; border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; margin-bottom:22px; transition: transform var(--transition), background var(--transition); }
   body.dark .card{ border-color:#475569; }
   .card:hover{ transform: translateY(-2px); }
-
   .section-title{ font-size: clamp(16px, 2.4vw, 22px); margin-bottom: 12px; color: var(--brand1); font-weight:700; }
-
   .question{ font-weight:700; margin-bottom: 12px; font-size: 1.05em; }
   .options{ display:grid; gap:12px; }
   .option{ display:flex; align-items:center; gap:10px; padding: 12px; border:1px solid #e5e7eb; border-radius: 10px; cursor:pointer; background:#f9fafb; transition: background var(--transition), transform var(--transition); }
@@ -88,36 +79,30 @@
   .option:hover{ background:#e0f2fe; transform: translateX(3px); }
   body.dark .option:hover{ background:#475569; }
   .option input{ width:18px; height:18px; accent-color: var(--brand1); }
+  /* Correct/incorrect ONLY after finalize */
   .option.correct{ border-color: var(--ok); background:#ecfdf5; }
   body.dark .option.correct{ background:#14532d22; }
   .option.incorrect{ border-color: var(--bad); background:#fef2f2; }
   body.dark .option.incorrect{ background:#7f1d1d22; }
-
   .speak, .hint-btn{ margin-left:auto; background:none; border:none; cursor:pointer; font-size:20px; color: var(--brand1); transition: transform var(--transition); }
   .speak:hover, .hint-btn:hover { transform: scale(1.15); }
   .hint-text{ display:none; margin-top:10px; padding:12px; background:#f0f9ff; border-left:4px solid var(--brand1); border-radius:8px; font-size:.95em; color: var(--muted); }
   body.dark .hint-text{ background:#334155; color:#d1d5db; }
   .hint-text.show{ display:block; }
-
   .font-controls{ display:flex; gap:8px; align-items:center; }
   .font-controls .btn { min-width: 42px; text-align:center; }
-
   .scroll-top{ position:fixed; bottom:20px; right:20px; background:var(--brand1); color:white; border:none; padding:14px; border-radius:50%; cursor:pointer; box-shadow: var(--shadow); font-size:20px; display:none; transition: transform var(--transition), background var(--transition); }
   .scroll-top:hover{ background: var(--brand2); transform: translateY(-3px); }
-
   /* Gate */
   .gate-head{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
   .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:#eef2ff; color:#1e3a8a; border:1px solid #c7d2fe; font-size:.8rem}
   .gate-box{ max-height: 52vh; overflow:auto; border:1px dashed #cbd5e1; border-radius:12px; padding:14px; background:#f9fafb; }
   body.dark .gate-box{ background:#334155; border-color:#475569; }
   .gate-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-
   .small{ font-size:.92em; color:var(--muted); }
-
   /* Timer badge */
   .timer{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; border:1px solid #e2e8f0; font-weight:700; }
   body.dark .timer{ background:#334155; border-color:#475569; color:#f3f4f6; }
-
   /* Print header */
   #printHeader{ display:none; }
   #printHeader h2{ margin-bottom:6px; }
@@ -129,12 +114,17 @@
     .card{ box-shadow:none; border-color:#e5e7eb; }
     body{ background:white; }
   }
-
   @media (max-width:600px){
     header{ flex-direction:column; align-items:flex-start; gap:10px; }
     .controls{ width:100%; justify-content:flex-start; flex-wrap:wrap; }
     .btn{ flex:1; text-align:center; }
   }
+  /* Success banner */
+  .success-banner{
+    border-left: 4px solid var(--ok);
+    background: #ecfdf5;
+  }
+  body.dark .success-banner{ background: #14532d22; }
 </style>
 </head>
 <body>
@@ -180,7 +170,6 @@
         <span class="pill" id="gateStatus">Leitura pendente</span>
       </div>
       <div class="gate-box" id="gateBox" aria-label="conteúdo da apostila (rolagem obrigatória)"></div>
-
       <div class="gate-actions" style="margin-top:12px">
         <label style="display:flex; align-items:center; gap:8px;">
           <input type="checkbox" id="readConfirm" disabled />
@@ -197,13 +186,19 @@
       <div style="display:flex; align-items:center; gap:12px; justify-content:space-between">
         <div>
           <h2 class="section-title" id="scoreTitle">Pontuação</h2>
-          <p class="score"><span id="scoreText">0</span>/<span id="scoreTotal">0</span></p>
+          <p class="score"><span id="scoreText">—</span>/<span id="scoreTotal">0</span></p>
         </div>
         <div class="timer" aria-live="polite" id="timerWrap">
           ⏱️ <span id="timerLabel">Tempo</span>:
           <span id="timer">00:00</span>
         </div>
       </div>
+    </section>
+
+    <!-- Banner: visto registrado -->
+    <section class="card success-banner" id="seenBanner" style="display:none">
+      <h3 id="seenTitle" style="margin-bottom:6px">Registro confirmado</h3>
+      <p id="seenBody" class="small">Sua nota foi X/Y e o visto foi registrado em DD/MM/AAAA HH:mm.</p>
     </section>
 
     <!-- Identificação -->
@@ -230,15 +225,7 @@
     <!-- Instruções (ANTES do quiz) -->
     <section class="card" id="instCard" style="display:none">
       <h2 class="section-title" id="instTitle">Instruções</h2>
-      <div id="instText">
-        <ol style="padding-left:18px; margin-top:6px">
-          <li>Leia a apostila acima até o final. Marque a caixa “Li a apostila”.</li>
-          <li>Clique em <strong>Começar o quiz</strong> para liberar as questões e iniciar o cronômetro.</li>
-          <li>Em cada questão, você pode tocar <strong>🔈</strong> para ouvir a leitura e <strong>💡</strong> para ver/escutar uma dica.</li>
-          <li>Ao terminar, clique em <strong>✅ Finalizar</strong> (no fim da página) para corrigir, calcular a nota e <strong>parar o tempo</strong>.</li>
-          <li>Preencha seu <strong>nome</strong> e <strong>período</strong>. Clique em <strong>✔️ Receber visto & enviar</strong> para registrar na planilha.</li>
-        </ol>
-      </div>
+      <div id="instText"></div>
     </section>
 
     <!-- Quiz -->
@@ -252,7 +239,7 @@
         <button class="btn good" id="markSeen" disabled>✔️ Receber visto & enviar</button>
         <button class="btn warn" id="resetQuiz">↩️ Reiniciar</button>
       </div>
-      <p class="small" style="margin-top:8px">Dica: após finalizar, confira a pontuação acima e, se já preencheu nome e período, clique em “Receber visto & enviar”.</p>
+      <p class="small" style="margin-top:8px" id="afterTip"></p>
     </section>
   </main>
 
@@ -299,6 +286,17 @@ const I18N = {
     scoreLabel: 'Pontuação',
     timerLabel: 'Tempo',
     finalizeBtn: '✅ Finalizar',
+    markSeenBtn: '✔️ Receber visto & enviar',
+    markSeenDone: '✔️ Visto registrado',
+    seenTitle: 'Registro confirmado',
+    seenBody: (nota, datahora) => `Sua nota foi <strong>${nota}</strong> e o visto foi registrado em <strong>${datahora}</strong>.`,
+    alerts: {
+      fillNamePeriod: 'Preencha nome e período antes de enviar.',
+      sendSuccess: 'Visto registrado e resultado enviado para a planilha!',
+      sendFail: 'Não foi possível enviar agora. Verifique a internet/endpoint.',
+      answerAll: 'Responda todas as questões antes de finalizar.',
+      keyAfterFinish: 'O gabarito só pode ser exibido após finalizar o quiz.'
+    },
     printTitle: 'Renova DF — Gabarito',
     phAlunoLbl: 'Aluno(a):',
     phPeriodoLbl: 'Período:',
@@ -316,25 +314,19 @@ const I18N = {
     sayIcon: '🔈',
     hintIcon: '💡',
     voice: 'pt-BR',
+    afterTip: 'Dica: após finalizar, confira a pontuação acima e, se já preencheu nome e período, clique em “Receber visto & enviar”.',
     apostilaHTML: `
       <p><strong>Pintar não é apenas aplicar tinta</strong>: é preparar a superfície, proteger o ambiente, escolher o produto certo, <strong>diluir corretamente</strong> e trabalhar com segurança.</p>
-
       <h3>🔒 Segurança (EPIs)</h3>
       <p>EPIs essenciais: <strong>óculos de proteção</strong>, <strong>respirador/máscara</strong> e <strong>luvas</strong>. Conforme o serviço: botas, protetor auricular e capacete.</p>
-
       <h3>🛠️ Materiais e Ferramentas</h3>
       <p>Kit completo: lixas, espátulas, desempenadeira, rolos, trinchas, fita/lona, selador/primer, massa, <strong>tinta</strong>, <strong>diluente</strong> e EPIs. A massa corrida aplica-se com <strong>espátula e desempenadeira</strong>.</p>
-
       <h3>📑 Etapas da Pintura</h3>
       <ol>
-        <li>Proteger o ambiente;</li>
-        <li>Corrigir/alisar;</li>
-        <li>Lixar e limpar;</li>
-        <li>Aplicar selador/fundo;</li>
-        <li>Passar massa (se necessário) e lixar/limpar novamente;</li>
+        <li>Proteger o ambiente;</li><li>Corrigir/alisar;</li><li>Lixar e limpar;</li>
+        <li>Aplicar selador/fundo;</li><li>Passar massa (se necessário) e lixar/limpar novamente;</li>
         <li>Aplicar as demãos de acabamento.</li>
       </ol>
-
       <h3>🎨 Tipos de tinta</h3>
       <ul>
         <li><strong>PVA (látex, água):</strong> interiores de alvenaria; baixo odor; geralmente fosca.</li>
@@ -343,61 +335,28 @@ const I18N = {
         <li><strong>Epóxi:</strong> alta resistência; comum em pisos, azulejos e metais; muitas vezes bicomponente (A+B).</li>
         <li><strong>PU:</strong> muito resistente; uso específico.</li>
       </ul>
-
       <h3>💧 Diluição — Guia rápido</h3>
       <p>A <strong>diluição</strong> ajusta a viscosidade, melhora o rendimento e a aplicação, <em>evitando marcas e bolhas</em>. Siga <u>sempre</u> o rótulo do fabricante.</p>
-      <table style="width:100%; border-collapse:collapse; font-size:.95em">
-        <thead>
-          <tr>
-            <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Tipo</th>
-            <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Diluente</th>
-            <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">% (geral)</th>
-            <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Observações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="border:1px solid #e5e7eb; padding:8px">PVA (látex/água)</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Água limpa</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">10–20%</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Agitar bem. Ajustar pela ferramenta (rolo/pincel/pistola).</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e5e7eb; padding:8px">Acrílica</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Água limpa</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">10–20%</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Mais resistente à umidade; seguir rótulo.</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e5e7eb; padding:8px">Esmalte sintético</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Aguarrás (solvente mineral)</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">5–15%</td>
-            <td style="border:1px solid #e5e7eb; padding:8px"><strong>Nunca</strong> usar água. Ventilação e máscara.</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e5e7eb; padding:8px">Epóxi (2 comp.)</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Mistura A+B (catalisador)</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Conforme rótulo</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Respeitar <em>pot life</em>. Não substituir por água.</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e5e7eb; padding:8px">PU</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Solvente indicado pelo fabricante</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Conforme rótulo</td>
-            <td style="border:1px solid #e5e7eb; padding:8px">Aplicações específicas. EPIs sempre.</td>
-          </tr>
-        </tbody>
-      </table>
+      <table style="width:100%; border-collapse:collapse; font-size:.95em"><thead><tr>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Tipo</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Diluente</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">% (geral)</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Observações</th>
+      </tr></thead><tbody>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">PVA (látex/água)</td><td style="border:1px solid #e5e7eb; padding:8px">Água limpa</td><td style="border:1px solid #e5e7eb; padding:8px">10–20%</td><td style="border:1px solid #e5e7eb; padding:8px">Agitar bem. Ajustar pela ferramenta.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Acrílica</td><td style="border:1px solid #e5e7eb; padding:8px">Água limpa</td><td style="border:1px solid #e5e7eb; padding:8px">10–20%</td><td style="border:1px solid #e5e7eb; padding:8px">Mais resistente à umidade.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Esmalte sintético</td><td style="border:1px solid #e5e7eb; padding:8px">Aguarrás</td><td style="border:1px solid #e5e7eb; padding:8px">5–15%</td><td style="border:1px solid #e5e7eb; padding:8px"><strong>Nunca</strong> usar água.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Epóxi (2 comp.)</td><td style="border:1px solid #e5e7eb; padding:8px">Mistura A+B</td><td style="border:1px solid #e5e7eb; padding:8px">Conforme rótulo</td><td style="border:1px solid #e5e7eb; padding:8px">Respeitar <em>pot life</em>.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">PU</td><td style="border:1px solid #e5e7eb; padding:8px">Solvente indicado</td><td style="border:1px solid #e5e7eb; padding:8px">Conforme rótulo</td><td style="border:1px solid #e5e7eb; padding:8px">Aplicações específicas.</td></tr>
+      </tbody></table>
       <p style="margin-top:8px"><strong>Dica:</strong> para pistola/compressor, a tinta costuma precisar de <em>maior</em> diluição que no rolo/pincel.</p>
-
       <h3>🌈 Cores</h3>
-      <p><strong>Primárias (pigmento):</strong> vermelho, amarelo e azul (cores-mãe). <strong>Secundárias:</strong> mistura de duas primárias (laranja, verde, violeta). <strong>Terciárias:</strong> primária + secundária adjacente (ex.: azul-esverdeado).</p>
-
+      <p><strong>Primárias (pigmento):</strong> vermelho, amarelo e azul. <strong>Secundárias:</strong> laranja, verde, violeta. <strong>Terciárias:</strong> primária + secundária adjacente (ex.: azul-esverdeado).</p>
       <h3>⚙️ Técnicas e Equipamentos</h3>
       <ul>
-        <li>Compressor + pistola → acabamento mais uniforme e rápido (usar respirador e ventilação).</li>
+        <li>Compressor + pistola → acabamento uniforme e rápido (usar respirador e ventilação).</li>
         <li>Equipamentos <strong>airless</strong>: pulverização por alta pressão sem ar.</li>
-        <li><strong>Rendimento</strong>: m² por litro por demão — usar a embalagem para calcular a quantidade.</li>
+        <li><strong>Rendimento</strong>: m² por litro por demão — use a embalagem para calcular a quantidade.</li>
       </ul>
     `,
     data: [
@@ -455,6 +414,17 @@ const I18N = {
     scoreLabel: 'Score',
     timerLabel: 'Time',
     finalizeBtn: '✅ Finish',
+    markSeenBtn: '✔️ Get stamp & send',
+    markSeenDone: '✔️ Stamp recorded',
+    seenTitle: 'Record confirmed',
+    seenBody: (nota, datahora) => `Your score is <strong>${nota}</strong> and the stamp was recorded on <strong>${datahora}</strong>.`,
+    alerts: {
+      fillNamePeriod: 'Fill in name and period before sending.',
+      sendSuccess: 'Stamp recorded and result sent to the sheet!',
+      sendFail: 'Could not send now. Check internet/endpoint.',
+      answerAll: 'Answer all questions before finishing.',
+      keyAfterFinish: 'The answer key can only be shown after finishing the quiz.'
+    },
     printTitle: 'Renova DF — Answer Key',
     phAlunoLbl: 'Student:',
     phPeriodoLbl: 'Period:',
@@ -472,8 +442,73 @@ const I18N = {
     sayIcon: '🔈',
     hintIcon: '💡',
     voice: 'en-US',
-    apostilaHTML: `<!-- igual ao anterior em EN, mantido por brevidade -->`,
-    data: [] /* (mantido como antes; por brevidade, os itens estão completos no envio anterior em EN/ES) */
+    afterTip: 'Tip: after finishing, check your score above and, if you have filled in name and period, click “Get stamp & send”.',
+    apostilaHTML: `
+      <p><strong>Painting is not just applying paint</strong>: it’s preparing the surface, protecting the area, choosing the right product, <strong>properly thinning</strong>, and working safely.</p>
+      <h3>🔒 Safety (PPE)</h3>
+      <p>Essential PPE: <strong>safety goggles</strong>, <strong>respirator/mask</strong>, and <strong>gloves</strong>. Depending on the job: boots, hearing protection, and hard hat.</p>
+      <h3>🛠️ Materials & Tools</h3>
+      <p>Complete kit: sandpapers, scrapers, trowel, rollers, brushes, masking tape/sheet, sealer/primer, filler/compound, <strong>paint</strong>, <strong>thinner</strong>, and PPE. Wall compound is applied with a <strong>spatula and trowel</strong>.</p>
+      <h3>📑 Painting Steps</h3>
+      <ol>
+        <li>Protect the area;</li><li>Repair/level;</li><li>Sand and clean;</li>
+        <li>Apply sealer/undercoat;</li><li>Apply compound if needed and sand/clean again;</li>
+        <li>Apply finish coats.</li>
+      </ol>
+      <h3>🎨 Paint Types</h3>
+      <ul>
+        <li><strong>PVA (latex, water-based):</strong> interior masonry; low odor; usually matte.</li>
+        <li><strong>Acrylic:</strong> more moisture-resistant and washable; interior/exterior; matte/satin/semi-gloss.</li>
+        <li><strong>Synthetic enamel (solvent-based):</strong> wood and metals; use sanding sealer (wood) and anti-corrosive primer/red oxide (metal).</li>
+        <li><strong>Epoxy:</strong> high resistance; common on floors, tiles, and prepared metal; often two-component (A+B).</li>
+        <li><strong>PU (polyurethane):</strong> very resistant; specific uses.</li>
+      </ul>
+      <h3>💧 Thinning — Quick Guide</h3>
+      <p><strong>Thinning</strong> adjusts viscosity, improves coverage and application, <em>avoiding marks and bubbles</em>. Always follow the manufacturer’s label.</p>
+      <table style="width:100%; border-collapse:collapse; font-size:.95em"><thead><tr>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Type</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Thinner</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">% (general)</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Notes</th>
+      </tr></thead><tbody>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">PVA (latex/water)</td><td style="border:1px solid #e5e7eb; padding:8px">Clean water</td><td style="border:1px solid #e5e7eb; padding:8px">10–20%</td><td style="border:1px solid #e5e7eb; padding:8px">Stir well. Adjust to tool (roller/brush/spray).</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Acrylic</td><td style="border:1px solid #e5e7eb; padding:8px">Clean water</td><td style="border:1px solid #e5e7eb; padding:8px">10–20%</td><td style="border:1px solid #e5e7eb; padding:8px">More moisture-resistant; follow label.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Synthetic enamel</td><td style="border:1px solid #e5e7eb; padding:8px">Mineral spirits</td><td style="border:1px solid #e5e7eb; padding:8px">5–15%</td><td style="border:1px solid #e5e7eb; padding:8px"><strong>Never</strong> use water.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Epoxy (2-part)</td><td style="border:1px solid #e5e7eb; padding:8px">Mix A+B (catalyst)</td><td style="border:1px solid #e5e7eb; padding:8px">Per label</td><td style="border:1px solid #e5e7eb; padding:8px">Respect pot life.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">PU</td><td style="border:1px solid #e5e7eb; padding:8px">Specified solvent</td><td style="border:1px solid #e5e7eb; padding:8px">Per label</td><td style="border:1px solid #e5e7eb; padding:8px">Specific applications.</td></tr>
+      </tbody></table>
+      <p style="margin-top:8px"><strong>Tip:</strong> for spray/compressor, paint usually needs <em>more</em> thinning than with roller/brush.</p>
+      <h3>🌈 Colors</h3>
+      <p><strong>Primary (pigment):</strong> red, yellow, blue. <strong>Secondary:</strong> orange, green, violet. <strong>Tertiary:</strong> primary + adjacent secondary (e.g., blue-green).</p>
+      <h3>⚙️ Techniques & Equipment</h3>
+      <ul>
+        <li>Compressor + spray gun → more uniform and faster finish (use respirator and ventilation).</li>
+        <li><strong>Airless</strong> equipment: high-pressure atomization without air.</li>
+        <li><strong>Coverage</strong>: m² per liter per coat — use the can to estimate quantity.</li>
+      </ul>
+    `,
+    data: [
+      { t:"1) Epoxy paint is best suited for:", a:["Dry, low-traffic interior walls","Areas requiring high resistance and easy cleaning (floors, tiles, prepared metals)","Ceilings in living rooms and bedrooms","Exterior decorative textures"], c:1, hint:"Epoxy = high mechanical/chemical resistance; common on floors, tiles, prepared metals." },
+      { t:"2) Which PPE are essential for painting?", a:["Goggles, respirator/mask, and gloves","Cap and apron","Hearing protection only","Boots only"], c:0, hint:"Goggles + respirator/mask + gloves form the basic safety trio." },
+      { t:"3) To apply wall compound we mainly use:", a:["Wool roller and wide brush","Spatula and trowel","Whitewash brush and spray gun","Brush and compressor"], c:1, hint:"Spatula and trowel spread and level the compound." },
+      { t:"4) The most complete painting kit includes:", a:["Roller, paint, and sandpaper","Sandpapers, scrapers, rollers, brushes, tape/sheet, sealer/primer, compound, paint, thinner, and PPE","Only spray gun and compressor","Only latex paint"], c:1, hint:"Think in stages: prepare, protect, and paint." },
+      { t:"5) Correct order of steps (interior painting):", a:["Paint → sand → protect area","Protect → repair/level → sand/clean → sealer → compound → sand/clean → finish coats","Apply finish directly","Sealer last"], c:1, hint:"Preparation and cleaning between steps avoid marks and defects." },
+      { t:"6) Common building paint types:", a:["PVA, acrylic, synthetic enamel, epoxy, PU","Gouache and watercolor","Engine thermal paint","Only oil paint"], c:0, hint:"Choice depends on substrate and use (interior/exterior)." },
+      { t:"7) PVA latex is:", a:["Solvent-based","Water-based, common for interior masonry","Specific to industrial floors","Only for façades"], c:1, hint:"Economical, low odor; usually matte for dry interiors." },
+      { t:"8) About epoxy paint, it is correct that:", a:["It’s always single-component","It can be two-component (A+B) with high resistance","It’s only for ceilings","It doesn’t adhere to metals"], c:1, hint:"Respect pot life when mixing parts." },
+      { t:"9) Acrylic paint stands out for:", a:["Lower moisture resistance than PVA","Higher moisture resistance and washability; fit for interiors and exteriors","Use only on wood","Not supporting different finishes"], c:1, hint:"Available in matte, satin, and semi-gloss." },
+      { t:"10) Synthetic enamel is recommended for:", a:["Wood and metals","Bare plaster","Wall textures","Industrial floors"], c:0, hint:"Use sanding sealer (wood) and anti-corrosive primer (metal)." },
+      { t:"11) Red oxide (zarcão) is:", a:["A water-based paint","An anti-corrosive primer for steel","A type of sandpaper","A drying additive"], c:1, hint:"Protects metal against rust before finishing." },
+      { t:"12) Correct thinning for synthetic enamel:", a:["Water","Mineral spirits, per label","Neutral detergent","Always thinner, without checking the can"], c:1, hint:"Solvent-based paints must not be thinned with water." },
+      { t:"13) Primary colors (pigment system):", a:["Cyan, magenta, and yellow","Red, yellow, and blue","Black, white, and gray","Green, orange, and purple"], c:1, hint:"In this didactic context, we use red, yellow, and blue." },
+      { t:"14) Common “lines” of paints:", a:["Synthetic enamel, PVA latex, acrylic, epoxy, PU","Tempera and gouache","Only pearlescent automotive","Bitumen and grease"], c:0, hint:"Product families by use/finish." },
+      { t:"15) Secondary colors are formed by:", a:["Mixing two primaries","Mixing black and white","Primary with black","Random mixing"], c:0, hint:"Orange, green, violet." },
+      { t:"16) Example of a tertiary color:", a:["Pure blue","Reddish-violet (primary + adjacent secondary)","Black","White"], c:1, hint:"Primary + neighboring secondary." },
+      { t:"17) Advantage of a home compressor:", a:["Reduces PPE needs","Enables spray gun with uniform, fast finish","Eliminates surface prep","Replaces sealer"], c:1, hint:"Productivity with respiratory safety." },
+      { t:"18) “Coverage/yield” means:", a:["Touch-dry time","Area covered per liter per coat (m²/L/coat)","Amount of solvent","Roller nap thickness"], c:1, hint:"Use the can’s yield to calculate quantity." },
+      { t:"19) Complete: Primary colors are considered ________.", a:["secondary","matrices (mother colors)","pastels","complementaries"], c:1, hint:"Also called mother colors." },
+      { t:"20) Complete: These are __________ systems, “air-free”.", a:["HVLP","airless","turbo","centrifugal"], c:1, hint:"Airless = high-pressure spray without air mixing." },
+    ]
   },
 
   es: {
@@ -499,7 +534,7 @@ const I18N = {
         <li>Haz clic en <strong>Empezar el quiz</strong> para desbloquear preguntas e iniciar el cronómetro.</li>
         <li>En cada pregunta, toca <strong>🔈</strong> para escuchar y <strong>💡</strong> para una pista.</li>
         <li>Al terminar, pulsa <strong>✅ Finalizar</strong> (al final de la página) para corregir, puntuar y detener el tiempo.</li>
-        <li>Completa tu <strong>nombre</strong> y <strong>turno</strong>, luego <strong>✔️ Recibir visto & enviar</strong> para registrar en la hoja.</li>
+        <li>Completa tu <strong>nombre</strong> y <strong>turno</strong>, luego pulsa <strong>✔️ Recibir visto & enviar</strong> para registrar en la hoja.</li>
       </ol>
     `,
     keyBtn: '📘 Gabarito',
@@ -507,6 +542,17 @@ const I18N = {
     scoreLabel: 'Puntuación',
     timerLabel: 'Tiempo',
     finalizeBtn: '✅ Finalizar',
+    markSeenBtn: '✔️ Recibir visto & enviar',
+    markSeenDone: '✔️ Visto registrado',
+    seenTitle: 'Registro confirmado',
+    seenBody: (nota, datahora) => `Tu puntuación es <strong>${nota}</strong> y el visto fue registrado el <strong>${datahora}</strong>.`,
+    alerts: {
+      fillNamePeriod: 'Completa nombre y turno antes de enviar.',
+      sendSuccess: 'Visto registrado y resultado enviado a la hoja.',
+      sendFail: 'No fue posible enviar ahora. Revisa internet/endpoint.',
+      answerAll: 'Responde todas las preguntas antes de finalizar.',
+      keyAfterFinish: 'El gabarito solo puede mostrarse después de finalizar el quiz.'
+    },
     printTitle: 'Renova DF — Gabarito',
     phAlunoLbl: 'Estudiante:',
     phPeriodoLbl: 'Turno:',
@@ -520,18 +566,79 @@ const I18N = {
     optManha: 'Mañana',
     optTarde: 'Tarde',
     optNoite: 'Noche',
-    optIntegral: 'Integral',
+    optIntegral: 'Jornada completa',
     sayIcon: '🔈',
     hintIcon: '💡',
     voice: 'es-ES',
-    apostilaHTML: `<!-- igual al anterior en ES, mantido por brevedad -->`,
-    data: [] /* idem observação para brevidade */
+    afterTip: 'Consejo: al finalizar, revisa tu puntuación y, si ya completaste nombre y turno, pulsa “Recibir visto & enviar”.',
+    apostilaHTML: `
+      <p><strong>Pintar no es solo aplicar pintura</strong>: es preparar la superficie, proteger el ambiente, elegir el producto correcto, <strong>diluir adecuadamente</strong> y trabajar con seguridad.</p>
+      <h3>🔒 Seguridad (EPP)</h3>
+      <p>EPP esenciales: <strong>gafas de seguridad</strong>, <strong>respirador/mascarilla</strong> y <strong>guantes</strong>. Según el servicio: botas, protector auditivo y casco.</p>
+      <h3>🛠️ Materiales y Herramientas</h3>
+      <p>Kit completo: lijas, espátulas, llana, rodillos, brochas, cinta/lona, sellador/imprimación, masilla, <strong>pintura</strong>, <strong>diluyente</strong> y EPP. La masilla se aplica con <strong>espátula y llana</strong>.</p>
+      <h3>📑 Etapas de la Pintura</h3>
+      <ol>
+        <li>Proteger el ambiente;</li><li>Corregir/alisar;</li><li>Lijar y limpiar;</li>
+        <li>Aplicar sellador/fondo;</li><li>Aplicar masilla si es necesario y lijar/limpiar nuevamente;</li>
+        <li>Aplicar manos de acabado.</li>
+      </ol>
+      <h3>🎨 Tipos de pintura</h3>
+      <ul>
+        <li><strong>PVA (látex, base agua):</strong> interiores de albañilería; bajo olor; generalmente mate.</li>
+        <li><strong>Acrílica:</strong> más resistente a la humedad y lavable; interior/exterior; mate/satinada/semi-brillo.</li>
+        <li><strong>Esmalte sintético (base solvente):</strong> madera y metales; usar selladora (madera) y fondo anticorrosivo/óxido rojo (metal).</li>
+        <li><strong>Epoxi:</strong> alta resistencia; común en pisos, azulejos y metales preparados; a menudo bicomponente (A+B).</li>
+        <li><strong>PU:</strong> muy resistente; usos específicos.</li>
+      </ul>
+      <h3>💧 Dilución — Guía rápida</h3>
+      <p>La <strong>dilución</strong> ajusta la viscosidad, mejora el rendimiento y la aplicación, <em>evitando marcas y burbujas</em>. Sigue siempre la etiqueta del fabricante.</p>
+      <table style="width:100%; border-collapse:collapse; font-size:.95em"><thead><tr>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Tipo</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Diluyente</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">% (general)</th>
+        <th style="border:1px solid #e5e7eb; padding:8px; text-align:left">Observaciones</th>
+      </tr></thead><tbody>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">PVA (látex/agua)</td><td style="border:1px solid #e5e7eb; padding:8px">Agua limpia</td><td style="border:1px solid #e5e7eb; padding:8px">10–20%</td><td style="border:1px solid #e5e7eb; padding:8px">Agitar bien. Ajustar a la herramienta.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Acrílica</td><td style="border:1px solid #e5e7eb; padding:8px">Agua limpia</td><td style="border:1px solid #e5e7eb; padding:8px">10–20%</td><td style="border:1px solid #e5e7eb; padding:8px">Más resistente a la humedad.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Esmalte sintético</td><td style="border:1px solid #e5e7eb; padding:8px">Aguarrás</td><td style="border:1px solid #e5e7eb; padding:8px">5–15%</td><td style="border:1px solid #e5e7eb; padding:8px"><strong>Nunca</strong> usar agua.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">Epoxi (2 comp.)</td><td style="border:1px solid #e5e7eb; padding:8px">Mezcla A+B</td><td style="border:1px solid #e5e7eb; padding:8px">Según etiqueta</td><td style="border:1px solid #e5e7eb; padding:8px">Respetar el <em>pot life</em>.</td></tr>
+        <tr><td style="border:1px solid #e5e7eb; padding:8px">PU</td><td style="border:1px solid #e5e7eb; padding:8px">Solvente indicado</td><td style="border:1px solid #e5e7eb; padding:8px">Según etiqueta</td><td style="border:1px solid #e5e7eb; padding:8px">Aplicaciones específicas.</td></tr>
+      </tbody></table>
+      <p style="margin-top:8px"><strong>Consejo:</strong> para pistola/compresor, la pintura suele requerir <em>más</em> dilución que con rodillo/brocha.</p>
+      <h3>🌈 Colores</h3>
+      <p><strong>Primarios (pigmento):</strong> rojo, amarillo y azul. <strong>Secundarios:</strong> naranja, verde, violeta. <strong>Terciarios:</strong> primario + secundario adyacente (p. ej., azul verdoso).</p>
+      <h3>⚙️ Técnicas y Equipos</h3>
+      <ul>
+        <li>Compresor + pistola → acabado más uniforme y rápido (usar respirador y ventilación).</li>
+        <li>Equipos <strong>airless</strong>: pulverización a alta presión sin aire.</li>
+        <li><strong>Rendimiento</strong>: m² por litro por mano — usa el envase para calcular la cantidad.</li>
+      </ul>
+    `,
+    data: [
+      { t:"1) La pintura epoxi es más indicada para:", a:["Paredes interiores secas de bajo tráfico","Áreas que requieren alta resistencia y fácil limpieza (pisos, azulejos, metales preparados)","Cielos rasos de salas y dormitorios","Texturas decorativas exteriores"], c:1, hint:"Epoxi = alta resistencia mecánica/química; común en pisos, azulejos y metales preparados." },
+      { t:"2) ¿Qué EPP son esenciales en pintura?", a:["Gafas, respirador/mascarilla y guantes","Gorro y delantal","Solo protector auditivo","Solo botas"], c:0, hint:"Gafas + respirador/mascarilla + guantes forman el trío básico de seguridad." },
+      { t:"3) Para aplicar masilla usamos principalmente:", a:["Rodillo de lana y brocha ancha","Espátula y llana","Brocha de cal y pistola","Brocha y compresor"], c:1, hint:"Espátula y llana distribuyen y nivelan la masilla." },
+      { t:"4) Conjunto más completo para pintar:", a:["Rodillo, pintura y lija","Lijas, espátulas, rodillos, brochas, cinta/lona, sellador/imprimación, masilla, pintura, diluyente y EPP","Solo pistola y compresor","Solo pintura látex"], c:1, hint:"Organiza por etapas: preparar, proteger y pintar." },
+      { t:"5) Orden correcto de etapas (pintura interior):", a:["Pintar → lijar → proteger ambiente","Proteger → corregir/alisar → lijar/limpiar → sellador → masilla → lijar/limpiar → manos de acabado","Aplicar acabado directo","Sellador al final"], c:1, hint:"Preparación y limpieza entre etapas evitan marcas y fallas." },
+      { t:"6) Tipos de pintura en construcción:", a:["PVA, acrílica, esmalte sintético, epoxi, PU","Témpera y acuarela","Pintura térmica de motor","Solo óleo"], c:0, hint:"La elección depende del sustrato y del uso (interior/exterior)." },
+      { t:"7) Látex PVA es:", a:["A base de solvente","A base de agua, común en interiores de albañilería","Específico para pisos industriales","Solo fachadas"], c:1, hint:"Económico, bajo olor; usualmente mate para interiores secos." },
+      { t:"8) Sobre la pintura epoxi, es correcto:", a:["Siempre es monocomponente","Puede ser bicomponente (A+B) y tiene alta resistencia","Solo indicada para cielos rasos","No se adhiere a metales"], c:1, hint:"Respeta el pot life al mezclar las partes." },
+      { t:"9) La pintura acrílica destaca por:", a:["Menor resistencia a la humedad que el PVA","Mayor resistencia a la humedad y lavabilidad; sirve para interiores y exteriores","Usarse solo en madera","No admitir diferentes acabados"], c:1, hint:"Disponible en mate, satinado y semibrillo." },
+      { t:"10) El esmalte sintético se recomienda para:", a:["Madera y metales","Yeso crudo","Texturas de pared","Pisos industriales"], c:0, hint:"Usa selladora (madera) y fondo anticorrosivo (metal)." },
+      { t:"11) El óxido rojo (zarcón) es:", a:["Una pintura a base de agua","Un fondo/primer anticorrosivo para acero","Un tipo de lija","Un aditivo de secado"], c:1, hint:"Protege el metal contra la corrosión antes del acabado." },
+      { t:"12) Dilución correcta del esmalte sintético:", a:["Agua","Aguarrás (disolvente mineral), según etiqueta","Detergente neutro","Siempre thinner, sin consultar el envase"], c:1, hint:"Las pinturas base solvente no deben diluirse con agua." },
+      { t:"13) Colores primarios (sistema pigmento):", a:["Cian, magenta y amarillo","Rojo, amarillo y azul","Negro, blanco y gris","Verde, naranja y morado"], c:1, hint:"En este contexto didáctico usamos rojo, amarillo y azul." },
+      { t:"14) “Líneas” de pinturas comunes:", a:["Esmalte sintético, látex PVA, acrílica, epoxi, PU","Témpera y gouache","Automotriz perlada únicamente","Betún y grasa"], c:0, hint:"Familias de productos por uso/acabado." },
+      { t:"15) Los colores secundarios se forman por:", a:["Mezcla de dos primarios","Mezcla de negro con blanco","Primario con negro","Mezcla aleatoria"], c:0, hint:"Naranja, verde y violeta." },
+      { t:"16) Ejemplo de color terciario:", a:["Azul puro","Rojo-violáceo (primario + secundario adyacente)","Negro","Blanco"], c:1, hint:"Primario + secundario vecino." },
+      { t:"17) Ventaja del compresor doméstico:", a:["Reduce EPP","Permite pistola (spray) con acabado uniforme y rápido","Elimina la preparación de la superficie","Sustituye el sellador"], c:1, hint:"Productividad con seguridad respiratoria." },
+      { t:"18) “Rendimiento” significa:", a:["Tiempo de secado al tacto","Superficie cubierta por litro por mano (m²/L/mano)","Cantidad de solvente","Grosor del rodillo"], c:1, hint:"Usa el rendimiento del envase para calcular la cantidad." },
+      { t:"19) Completa: Los colores primarios se consideran ________.", a:["secundarios","matrices (colores madre)","pasteles","complementarios"], c:1, hint:"También llamados colores madre." },
+      { t:"20) Completa: Son equipos con sistema __________, “sin aire”.", a:["HVLP","airless","turbo","centrífugo"], c:1, hint:"Airless = pulverización a alta presión sin mezcla de aire." },
+    ]
   }
 };
-
-/* Para caber aqui, mantive PT completo; EN/ES foram reduzidos nos campos longos,
-   mas se você usa bilíngue/ES, copie os blocos EN/ES completos da versão anterior
-   (ou me peça que eu te reenvio o arquivo final com os 3 idiomas 100%). */
 </script>
 
 <script>
@@ -572,7 +679,7 @@ const scoreTotal = document.getElementById('scoreTotal');
 const timerLabel = document.getElementById('timerLabel');
 const timerEl    = document.getElementById('timer');
 
-/* ====== Ident labels & print header ====== */
+/* ====== Ident & print header ====== */
 const identTitle = document.getElementById('identTitle');
 const labelAluno = document.getElementById('labelAluno');
 const labelPeriodo = document.getElementById('labelPeriodo');
@@ -581,8 +688,6 @@ const optManha = document.getElementById('optManha');
 const optTarde = document.getElementById('optTarde');
 const optNoite = document.getElementById('optNoite');
 const optIntegral = document.getElementById('optIntegral');
-
-const printHeader = document.getElementById('printHeader');
 const printTitle  = document.getElementById('printTitle');
 const phAlunoLbl  = document.getElementById('phAlunoLbl');
 const phPeriodoLbl= document.getElementById('phPeriodoLbl');
@@ -600,6 +705,12 @@ const finalizeBtn  = document.getElementById('finalizeQuiz');
 const keyBtn       = document.getElementById('showKey');
 const resetBtn     = document.getElementById('resetQuiz');
 const markSeenBtn  = document.getElementById('markSeen');
+const afterTip     = document.getElementById('afterTip');
+
+/* ====== Seen banner ====== */
+const seenBanner = document.getElementById('seenBanner');
+const seenTitle  = document.getElementById('seenTitle');
+const seenBody   = document.getElementById('seenBody');
 
 /* ====== Timer state ====== */
 let timerInt = null;
@@ -633,14 +744,20 @@ function setLang(lang){
   document.getElementById('stopVoice').textContent = L.stop;
   document.getElementById('toggleDark').textContent = L.dark;
 
-  // Inst card (antes do quiz)
+  // Instruções e rodapé
   document.getElementById('instTitle').textContent = L.instructions;
   document.getElementById('instText').innerHTML = L.instText;
+  keyBtn.textContent      = L.keyBtn;
+  resetBtn.textContent    = L.resetBtn;
+  finalizeBtn.textContent = L.finalizeBtn;
+  markSeenBtn.textContent = L.markSeenBtn;
+  afterTip.textContent = L.afterTip;
 
-  // i18n diversos
+  // Score labels
   scoreTitle.textContent = L.scoreLabel;
   timerLabel.textContent = L.timerLabel;
 
+  // Ident i18n
   identTitle.textContent = L.identTitle;
   labelAluno.textContent = L.labelAluno;
   labelPeriodo.textContent = L.labelPeriodo;
@@ -658,10 +775,8 @@ function setLang(lang){
   phTempoLbl.textContent = L.phTempoLbl;
   phNotaLbl.textContent  = L.phNotaLbl;
 
-  // Apostila content
+  // Build apostila e questões
   gateBox.innerHTML = L.apostilaHTML;
-
-  // Build questions
   sec.innerHTML = '';
   (L.data || []).forEach((q,idx)=>{
     const art=document.createElement('article');
@@ -676,16 +791,15 @@ function setLang(lang){
   });
   bindDynamicHandlers();
 
-  // scoring state
+  // Estado inicial do quiz
   userAnswers = Array((L.data || []).length).fill(-1);
-  scoreText.textContent = 0;
+  scoreText.textContent = '—';
   scoreTotal.textContent = (L.data || []).length;
   isFinalized = false;
   finalizeBtn.disabled = false;
   markSeenBtn.disabled = true;
-  markSeenBtn.textContent = '✔️ Receber visto & enviar';
+  seenBanner.style.display = 'none';
 
-  // Gate state for this lang
   applyGateSavedState();
 }
 
@@ -718,7 +832,7 @@ function speakLong(text){
 }
 
 /* =========================
-   QUIZ BINDINGS
+   QUIZ BINDINGS (sem revelar antes)
    ========================= */
 function bindDynamicHandlers(){
   document.querySelectorAll('.speak').forEach(btn=>btn.onclick=()=>speak(btn.dataset.say));
@@ -730,54 +844,47 @@ function bindDynamicHandlers(){
     t.classList.toggle('show');
     if(t.classList.contains('show')) speak(t.textContent);
   });
-  // answer check
+  // Somente registra seçao; não bloqueia nem mostra correto/incorreto
   document.querySelectorAll('.options').forEach((optGroup, qIdx)=>{
-    const correct = parseInt(optGroup.dataset.correct,10);
     optGroup.querySelectorAll('input[type="radio"]').forEach(input=>{
       input.onchange = () => {
         if(isFinalized) return;
-        const val = parseInt(input.value,10);
-        if(userAnswers[qIdx] !== -1) return; // já respondeu
-        userAnswers[qIdx] = val;
-        optGroup.querySelectorAll('input').forEach(i=>i.disabled=true);
-        const labels = [...optGroup.querySelectorAll('.option')];
-        labels.forEach(l=>l.classList.remove('correct','incorrect'));
-        labels[correct]?.classList.add('correct');
-        if(val !== correct){ labels[val]?.classList.add('incorrect'); }
-        updateScore();
+        userAnswers[qIdx] = parseInt(input.value,10);
       };
     });
   });
 }
 
-function updateScore(){
+function allAnswered(){
+  return userAnswers.every(v=>v!==-1);
+}
+
+function updateScoreFinal(){
   const L = I18N[currentLang];
   const got = userAnswers.reduce((s,v,i)=> s + (v===L.data?.[i]?.c ? 1 : 0), 0);
   scoreText.textContent = got;
 }
 
-/* ========= FINALIZAR: corrige tudo, calcula nota, trava e para cronômetro ========= */
+/* ========= FINALIZAR ========= */
 function finalizeQuiz(){
   if(isFinalized) return;
-
+  if(!allAnswered()){
+    alert(I18N[currentLang].alerts.answerAll);
+    return;
+  }
+  // Travar inputs e revelar gabarito
   document.querySelectorAll('.options').forEach((optGroup, qIdx)=>{
     const correct = parseInt(optGroup.dataset.correct,10);
     const labels = [...optGroup.querySelectorAll('.option')];
     const inputs = [...optGroup.querySelectorAll('input')];
-
-    const checked = inputs.find(i=>i.checked);
-    const chosenVal = checked ? parseInt(checked.value,10) : -1;
-    if(userAnswers[qIdx] === -1) userAnswers[qIdx] = chosenVal;
-
     inputs.forEach(i=>i.disabled=true);
     labels.forEach(l=>l.classList.remove('correct','incorrect'));
+    const chosenVal = userAnswers[qIdx];
     labels[correct]?.classList.add('correct');
-    if(chosenVal !== -1 && chosenVal !== correct){
-      labels[chosenVal]?.classList.add('incorrect');
-    }
+    if(chosenVal !== correct){ labels[chosenVal]?.classList.add('incorrect'); }
   });
 
-  updateScore();
+  updateScoreFinal();
   pauseTimer();
   fillPrintHeader();
 
@@ -788,20 +895,66 @@ function finalizeQuiz(){
   window.scrollTo({top: scoreCard.offsetTop - 10, behavior:'smooth'});
 }
 
-/* ====== Envio para a planilha (Apps Script) ====== */
+/* ====== Answer key (apenas após finalizar) ====== */
+function showAnswerKey(){
+  if(!isFinalized){
+    alert(I18N[currentLang].alerts.keyAfterFinish);
+    return;
+  }
+  // já está mostrado no finalize; mantido por compatibilidade
+}
+
+/* ====== Reset ====== */
+function resetQuiz(){
+  const L = I18N[currentLang];
+  document.querySelectorAll('.options').forEach((optGroup)=>{
+    optGroup.querySelectorAll('input').forEach(i=>{ i.disabled=false; i.checked=false; });
+    optGroup.querySelectorAll('.option').forEach(l=>l.classList.remove('correct','incorrect'));
+  });
+  userAnswers = Array((L.data || []).length).fill(-1);
+  scoreText.textContent = '—';
+  resetTimerUI();
+  isFinalized = false;
+  finalizeBtn.disabled = false;
+  markSeenBtn.disabled = true;
+  markSeenBtn.textContent = L.markSeenBtn;
+  fillPrintHeader();
+  seenBanner.style.display = 'none';
+}
+
+/* ====== Print header fill ====== */
+function fillPrintHeader(){
+  const L = I18N[currentLang];
+  printTitle.textContent = L.printTitle;
+  phAlunoLbl.textContent = L.phAlunoLbl;
+  phPeriodoLbl.textContent = L.phPeriodoLbl;
+  phDataLbl.textContent = L.phDataLbl;
+  phTempoLbl.textContent = L.phTempoLbl;
+  phNotaLbl.textContent  = L.phNotaLbl;
+
+  const aluno = document.getElementById('aluno')?.value?.trim() || '—';
+  const periodoSel = document.getElementById('periodo');
+  const periodo = (periodoSel && periodoSel.value) ? periodoSel.value : '—';
+  const nowStr = new Date().toLocaleString(document.documentElement.lang || L.htmlLang || 'pt-BR');
+
+  phAluno.textContent   = aluno;
+  phPeriodo.textContent = periodo;
+  phData.textContent    = nowStr;
+  phTempo.textContent   = timerEl.textContent || '00:00';
+  phNota.textContent    = `${scoreText.textContent}/${scoreTotal.textContent}`;
+}
+
+/* ====== Envio para planilha + banner ====== */
 async function enviarParaPlanilha() {
+  const L = I18N[currentLang];
   try {
-    const L = I18N[currentLang];
     const quizName = `${L.headerTitle} (${currentLang.toUpperCase()})`;
     const aluno = (document.getElementById('aluno')?.value || '').trim();
     const turno = (document.getElementById('periodo')?.value || '').trim();
     const nota  = `${document.getElementById('scoreText').textContent}/${document.getElementById('scoreTotal').textContent}`;
-    const datahora = new Date().toLocaleString(document.documentElement.lang || 'pt-BR');
+    const datahora = new Date().toLocaleString(document.documentElement.lang || L.htmlLang || 'pt-BR');
 
-    if (!aluno || !turno) {
-      alert('Preencha nome e período antes de enviar.');
-      return;
-    }
+    if (!aluno || !turno) { alert(L.alerts.fillNamePeriod); return; }
 
     await fetch(SHEETS_ENDPOINT, {
       method: 'POST',
@@ -811,17 +964,22 @@ async function enviarParaPlanilha() {
     });
 
     markSeenBtn.disabled = true;
-    markSeenBtn.textContent = '✔️ Visto registrado';
-    alert('Visto registrado e resultado enviado para a planilha!');
+    markSeenBtn.textContent = L.markSeenDone;
+
+    seenTitle.textContent = L.seenTitle;
+    seenBody.innerHTML = L.seenBody(nota, datahora);
+    seenBanner.style.display = '';
+
+    alert(L.alerts.sendSuccess);
   } catch (e) {
-    alert('Não foi possível enviar agora. Verifique a internet/endpoint.');
+    alert(L.alerts.sendFail);
   }
 }
 
 /* =========================
    Gate behavior + views
    ========================= */
-const STORAGE_KEY = 'renovadf_pintura_read_v6';
+const STORAGE_KEY = 'renovadf_pintura_read_v7';
 
 function applyGateSavedState(){
   const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
@@ -848,7 +1006,7 @@ function openQuizView(){
   identCard.style.display = '';
   instCard.style.display  = '';
   sec.style.display = '';
-  actionsCard.style.display = '';  // mostra os botões no final
+  actionsCard.style.display = '';
 }
 
 function closeQuizView(){
@@ -884,6 +1042,8 @@ startQuiz.addEventListener('click', ()=>{
   isFinalized = false;
   finalizeBtn.disabled = false;
   markSeenBtn.disabled = true;
+  seenBanner.style.display = 'none';
+  scoreText.textContent = '—';
   startTimer();
   window.scrollTo({top: scoreCard.offsetTop - 10, behavior:'smooth'});
 });
@@ -892,7 +1052,6 @@ startQuiz.addEventListener('click', ()=>{
    Top-level handlers
    ========================= */
 langSel.addEventListener('change', (e)=> setLang(e.target.value));
-
 playApostila.onclick = () => {
   const L = I18N[currentLang];
   const apTitle = L.gateTitle || '';
@@ -901,7 +1060,6 @@ playApostila.onclick = () => {
   if (apText) parts.push(apTitle, apText);
   speakLong(parts.join('. '));
 };
-
 playAll.onclick = () => {
   if (playAll.disabled) return;
   const L = I18N[currentLang];
@@ -914,71 +1072,14 @@ playAll.onclick = () => {
   if (sec.style.display !== 'none') { parts.push(inst); if (questions) parts.push(questions); }
   speakLong(parts.join('. '));
 };
-
 stopBtn.onclick=()=>speechSynthesis.cancel();
-
 let fontScale=1;
 function applyFont(){ document.documentElement.style.setProperty('--fontScale', fontScale); }
 document.getElementById('fontPlus').onclick=()=>{ fontScale+=0.1; applyFont(); };
 document.getElementById('fontMinus').onclick=()=>{ fontScale=Math.max(0.8, fontScale-0.1); applyFont(); };
-
 const scrollBtn=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>{ scrollBtn.style.display = window.scrollY>200 ? 'block' : 'none'; });
 scrollBtn.onclick=()=> window.scrollTo({top:0,behavior:'smooth'});
-
-/* =========================
-   Answer key, reset, print header fill
-   ========================= */
-function showAnswerKey(){
-  document.querySelectorAll('.options').forEach((optGroup, qIdx)=>{
-    const correct = parseInt(optGroup.dataset.correct,10);
-    const labels = [...optGroup.querySelectorAll('.option')];
-    labels.forEach(l=>l.classList.remove('correct','incorrect'));
-    labels[correct]?.classList.add('correct');
-    optGroup.querySelectorAll('input').forEach(i=>{
-      i.disabled=true; if(parseInt(i.value,10)===correct) i.checked=true;
-    });
-    if(userAnswers[qIdx]===-1) userAnswers[qIdx] = -2;
-  });
-  updateScore();
-  pauseTimer();
-  fillPrintHeader();
-}
-function resetQuiz(){
-  document.querySelectorAll('.options').forEach((optGroup)=>{
-    optGroup.querySelectorAll('input').forEach(i=>{ i.disabled=false; i.checked=false; });
-    optGroup.querySelectorAll('.option').forEach(l=>l.classList.remove('correct','incorrect'));
-  });
-  const L = I18N[currentLang];
-  userAnswers = Array((L.data || []).length).fill(-1);
-  updateScore();
-  resetTimerUI();
-  isFinalized = false;
-  finalizeBtn.disabled = false;
-  markSeenBtn.disabled = true;
-  markSeenBtn.textContent = '✔️ Receber visto & enviar';
-  fillPrintHeader();
-}
-function fillPrintHeader(){
-  const L = I18N[currentLang];
-  printTitle.textContent = L.printTitle;
-  phAlunoLbl.textContent = L.phAlunoLbl;
-  phPeriodoLbl.textContent = L.phPeriodoLbl;
-  phDataLbl.textContent = L.phDataLbl;
-  phTempoLbl.textContent = L.phTempoLbl;
-  phNotaLbl.textContent  = L.phNotaLbl;
-
-  const aluno = document.getElementById('aluno')?.value?.trim() || '—';
-  const periodoSel = document.getElementById('periodo');
-  const periodo = (periodoSel && periodoSel.value) ? periodoSel.value : '—';
-  const nowStr = new Date().toLocaleString(document.documentElement.lang || 'pt-BR');
-
-  phAluno.textContent   = aluno;
-  phPeriodo.textContent = periodo;
-  phData.textContent    = nowStr;
-  phTempo.textContent   = timerEl.textContent || '00:00';
-  phNota.textContent    = `${scoreText.textContent}/${scoreTotal.textContent}`;
-}
 
 /* Click handlers (rodapé) */
 document.getElementById('showKey').onclick = ()=> showAnswerKey();
