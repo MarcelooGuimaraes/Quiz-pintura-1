@@ -9,18 +9,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
+    /* Identidade Renova */
+    --brand-blue: #0b5394;
+    --brand-green: #22b14c;
+
+    /* Tema */
+    --bg-light: #f0f4f8;
+    --bg-dark: #111827;
+    --ink-light: #111827;
+    --ink-dark: #f9fafb;
+
+    /* Componentes */
+    --shadow: 0 6px 18px rgba(0,0,0,.18);
+    --radius: 12px;
+    --transition: .25s ease;
+
+    /* Tokens existentes */
     --bg: linear-gradient(180deg, #e3f2fd, #fdfdfd);
     --card: #ffffff;
     --ink: #111827;
     --muted: #6b7280;
-    --brand1: #0b5394;
-    --brand2: #22b14c;
     --ok: #16a34a;
     --bad: #dc2626;
     --warn: #d97706;
-    --shadow: 0 6px 20px rgba(0,0,0,.08);
-    --radius: 16px;
-    --transition: .25s ease;
     --fontScale: 1;
   }
   body.dark{
@@ -30,6 +41,7 @@
     --muted: #9ca3af;
     --shadow: 0 6px 20px rgba(0,0,0,.5);
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body{
@@ -40,69 +52,97 @@
     font-size: calc(16px * var(--fontScale));
     transition: background var(--transition), color var(--transition);
   }
-  header{
-    position: sticky; top:0; z-index:10;
-    background: var(--brand1); color:white;
-    border-bottom: 3px solid var(--brand2);
-    display:flex; justify-content:space-between; align-items:center;
-    padding:12px 20px;
+
+  /* ===== CABEÇALHO (IDENTIDADE RENOVA) ===== */
+  header.renova-header{
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
+    color: #fff;
+    border-bottom: 3px solid var(--brand-green);
     box-shadow: var(--shadow);
   }
-  .title{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-  .logo-img{ height:50px; border-radius:8px; }
-  h1{ font-size: clamp(18px, 3.2vw, 28px); font-weight:800; }
-  .muted { font-weight:400; font-size:.85em; color:#cfe8ff; }
-  .controls{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-  .btn{
-    border:1px solid #e5e7eb; color:var(--ink); background:#f9fafb;
-    padding:10px 14px; border-radius: 12px; cursor:pointer;
-    transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
-    font-weight:600;
+  .renova-header .bar{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 14px;
   }
-  body.dark .btn { background:#334155; border-color:#475569; color:#f3f4f6; }
-  .btn:hover{ background:#e0f2fe; transform: translateY(-1px); box-shadow: var(--shadow); }
-  body.dark .btn:hover{ background:#475569; }
-  .btn.primary{ background: linear-gradient(135deg, var(--brand1), var(--brand2)); border:none; color:white; }
-  .btn.good{ background: linear-gradient(135deg, #16a34a, #22c55e); border:none; color:white; }
-  .btn.warn{ background: linear-gradient(135deg, #d97706, #f59e0b); border:none; color:white; }
-  select.lang{ appearance:none; border:1px solid #e5e7eb; background:#f9fafb; color:var(--ink); padding:10px 14px; border-radius:12px; font-weight:600; }
-  body.dark select.lang{ background:#334155; border-color:#475569; color:#f3f4f6; }
+
+  /* Marca e título */
+  .rh-title{
+    display:flex; align-items:center; gap:14px; min-width:0;
+  }
+  .rh-logo{
+    height: 50px; width:auto; border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    background: #fff; object-fit:cover;
+  }
+  .rh-text{min-width:0}
+  .rh-text h1{
+    margin:0; font-size: clamp(18px, 3.5vw, 28px); line-height:1.1; font-weight:800;
+    text-shadow: 0 1px 0 rgba(0,0,0,.2);
+  }
+  .rh-sub{
+    display:block; margin-top:2px; font-weight:600; opacity:.95; font-size:.92rem;
+    color: #e7fff0;
+  }
+
+  /* Controles à direita */
+  .rh-controls{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:10px;
+  }
+  .btn, select.lang{
+    appearance:none; border:none; outline:none; cursor:pointer;
+    font-weight:700; border-radius: 12px; padding:10px 14px;
+    background: #f9fafb; color:#111; transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  }
+  .btn:hover, select.lang:hover{ transform: translateY(-1px); background:#e0f2fe; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+  body.dark .btn, body.dark select.lang{ background:#374151; color:#fff; }
+  body.dark .btn:hover, body.dark select.lang:hover{ background:#4b5563; }
+  .btn.primary{
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
+    color:#fff;
+  }
+
+  /* ===== LAYOUT E COMPONENTES ===== */
   .wrap{ max-width: 1000px; margin:0 auto; padding: 22px 18px; }
   .card{ background: var(--card); border:1px solid #e5e7eb; border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; margin-bottom:22px; transition: transform var(--transition), background var(--transition); }
   body.dark .card{ border-color:#475569; }
   .card:hover{ transform: translateY(-2px); }
-  .section-title{ font-size: clamp(16px, 2.4vw, 22px); margin-bottom: 12px; color: var(--brand1); font-weight:700; }
+  .section-title{ font-size: clamp(16px, 2.4vw, 22px); margin-bottom: 12px; color: var(--brand-blue); font-weight:700; }
   .question{ font-weight:700; margin-bottom: 12px; font-size: 1.05em; }
   .options{ display:grid; gap:12px; }
   .option{ display:flex; align-items:center; gap:10px; padding: 12px; border:1px solid #e5e7eb; border-radius: 10px; cursor:pointer; background:#f9fafb; transition: background var(--transition), transform var(--transition); }
   body.dark .option{ background:#334155; border-color:#475569; }
   .option:hover{ background:#e0f2fe; transform: translateX(3px); }
   body.dark .option:hover{ background:#475569; }
-  .option input{ width:18px; height:18px; accent-color: var(--brand1); }
+  .option input{ width:18px; height:18px; accent-color: var(--brand-blue); }
   /* Correct/incorrect ONLY after finalize */
   .option.correct{ border-color: var(--ok); background:#ecfdf5; }
   body.dark .option.correct{ background:#14532d22; }
   .option.incorrect{ border-color: var(--bad); background:#fef2f2; }
   body.dark .option.incorrect{ background:#7f1d1d22; }
-  .speak, .hint-btn{ margin-left:auto; background:none; border:none; cursor:pointer; font-size:20px; color: var(--brand1); transition: transform var(--transition); }
+  .speak, .hint-btn{ margin-left:auto; background:none; border:none; cursor:pointer; font-size:20px; color: var(--brand-blue); transition: transform var(--transition); }
   .speak:hover, .hint-btn:hover { transform: scale(1.15); }
-  .hint-text{ display:none; margin-top:10px; padding:12px; background:#f0f9ff; border-left:4px solid var(--brand1); border-radius:8px; font-size:.95em; color: var(--muted); }
+  .hint-text{ display:none; margin-top:10px; padding:12px; background:#f0f9ff; border-left:4px solid var(--brand-blue); border-radius:8px; font-size:.95em; color: var(--muted); }
   body.dark .hint-text{ background:#334155; color:#d1d5db; }
   .hint-text.show{ display:block; }
-  .font-controls{ display:flex; gap:8px; align-items:center; }
-  .font-controls .btn { min-width: 42px; text-align:center; }
-  .scroll-top{ position:fixed; bottom:20px; right:20px; background:var(--brand1); color:white; border:none; padding:14px; border-radius:50%; cursor:pointer; box-shadow: var(--shadow); font-size:20px; display:none; transition: transform var(--transition), background var(--transition); }
-  .scroll-top:hover{ background: var(--brand2); transform: translateY(-3px); }
+  .small{ font-size:.92em; color:var(--muted); }
+
   /* Gate */
   .gate-head{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
   .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:#eef2ff; color:#1e3a8a; border:1px solid #c7d2fe; font-size:.8rem}
   .gate-box{ max-height: 52vh; overflow:auto; border:1px dashed #cbd5e1; border-radius:12px; padding:14px; background:#f9fafb; }
   body.dark .gate-box{ background:#334155; border-color:#475569; }
   .gate-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-  .small{ font-size:.92em; color:var(--muted); }
+
   /* Timer badge */
   .timer{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; border:1px solid #e2e8f0; font-weight:700; }
   body.dark .timer{ background:#334155; border-color:#475569; color:#f3f4f6; }
+
   /* Print header */
   #printHeader{ display:none; }
   #printHeader h2{ margin-bottom:6px; }
@@ -114,136 +154,227 @@
     .card{ box-shadow:none; border-color:#e5e7eb; }
     body{ background:white; }
   }
-  @media (max-width:600px){
-    header{ flex-direction:column; align-items:flex-start; gap:10px; }
-    .controls{ width:100%; justify-content:flex-start; flex-wrap:wrap; }
-    .btn{ flex:1; text-align:center; }
+  @media (max-width:720px){
+    .renova-header .bar{ grid-template-columns: 1fr; gap: 10px; }
+    .rh-controls{ justify-content:flex-start; }
   }
+
+  /* Scroll top */
+  .scroll-top{ position:fixed; bottom:20px; right:20px; background:var(--brand-blue); color:white; border:none; padding:14px; border-radius:50%; cursor:pointer; box-shadow: var(--shadow); font-size:20px; display:none; transition: transform var(--transition), background var(--transition); }
+  .scroll-top:hover{ background: var(--brand-green); transform: translateY(-3px); }
+
   /* Success banner */
   .success-banner{
     border-left: 4px solid var(--ok);
     background: #ecfdf5;
   }
   body.dark .success-banner{ background: #14532d22; }
+
+  /* ===== Modal "Parabéns" ===== */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.6);
+    display:none; align-items:center; justify-content:center;
+    z-index:1000; padding:20px;
+  }
+  .modal{
+    width:min(560px, 92vw);
+    background: linear-gradient(135deg, #ffffff, #f6fff9);
+    border-radius: 16px; box-shadow: var(--shadow);
+    border: 2px solid var(--brand-green);
+    overflow:hidden;
+  }
+  body.dark .modal{
+    background: linear-gradient(135deg, #0f172a, #0b1b12);
+    border-color: #34d399;
+  }
+  .modal-head{
+    padding:18px 20px; color:#fff;
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
+    display:flex; align-items:center; gap:12px; font-weight:800;
+  }
+  .modal-body{ padding:18px 20px; line-height:1.6; }
+  .modal-actions{
+    padding:16px 20px; display:flex; gap:10px; justify-content:flex-end; background: rgba(0,0,0,.02);
+  }
+  .btn-outline, .btn-solid{
+    appearance:none; border:none; cursor:pointer; padding:10px 14px; border-radius:12px; font-weight:700;
+  }
+  .btn-outline{ background:#fff; border:2px solid var(--brand-green); color:#065f46; }
+  .btn-solid{ background: linear-gradient(135deg, var(--brand-blue), var(--brand-green)); color:#fff; }
+  body.dark .btn-outline{ background:#111827; color:#d1fae5; border-color:#10b981; }
+
+  /* Confete simples */
+  .confetti{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+  .confetti i{ position:absolute; top:-10px; font-style:normal; animation:drop 2.6s linear forwards; }
+  @keyframes drop{ to{ transform: translateY(110vh) rotate(360deg); opacity:.9; } }
+
+  /* ===== Rodapé assinatura ===== */
+  .renova-footer{
+    max-width:1100px; margin:24px auto 40px; padding:14px 20px;
+    background: rgba(255,255,255,.85);
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    font-size:.95rem; text-align:center;
+  }
+  body.dark .renova-footer{
+    background: rgba(17,24,39,.6); border-color: rgba(255,255,255,.1);
+  }
 </style>
 </head>
 <body>
-  <header>
-    <div class="title">
-      <img src="https://opiniaobrasilia.com.br/wp-content/uploads/2020/12/RenovaDF.jpeg" alt="Logo Renova DF" class="logo-img"/>
-      <h1 id="mainTitle">Noções de Pintura — Apostila + Quiz <span class="muted" id="subtitle">(Leia a apostila para liberar o quiz)</span></h1>
+
+<!-- ===== CABEÇALHO NO ESTILO RENOVA ===== -->
+<header class="renova-header" role="banner">
+  <div class="bar">
+    <!-- Marca / Título -->
+    <div class="rh-title">
+      <img class="rh-logo" src="https://opiniaobrasilia.com.br/wp-content/uploads/2020/12/RenovaDF.jpeg" alt="Logo Renova DF">
+      <div class="rh-text">
+        <h1 id="mainTitle">Noções de Pintura — Apostila + Quiz</h1>
+        <small class="rh-sub" id="subtitle">(Leia a apostila para liberar o quiz)</small>
+      </div>
     </div>
-    <div class="controls">
-      <select class="lang" id="lang">
+
+    <!-- Controles -->
+    <div class="rh-controls">
+      <select class="lang" id="lang" aria-label="Idioma">
         <option value="pt" selected>🇧🇷 Português</option>
         <option value="en">🇺🇸 English</option>
         <option value="es">🇪🇸 Español</option>
       </select>
+
       <button class="btn" id="playApostila">🔊 Ler só a apostila</button>
       <button class="btn primary" id="playAll" disabled>🔊 Ler tudo</button>
       <button class="btn" id="stopVoice">⏹️ Parar</button>
-      <div class="font-controls">
-        <button class="btn" id="fontPlus">A+</button>
-        <button class="btn" id="fontMinus">A-</button>
-      </div>
-      <button class="btn" id="toggleDark">🌙 Dark</button>
+
+      <button class="btn" id="fontPlus">A+</button>
+      <button class="btn" id="fontMinus">A-</button>
+
+      <button class="btn" id="toggleDark" title="Modo escuro">🌙 Dark</button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="wrap" id="app">
-    <!-- Cabeçalho impresso -->
-    <section id="printHeader" class="card">
-      <h2 id="printTitle">Renova DF — Gabarito</h2>
-      <div class="grid">
-        <div class="row"><strong id="phAlunoLbl">Aluno(a):</strong> <span id="phAluno">—</span></div>
-        <div class="row"><strong id="phPeriodoLbl">Período:</strong> <span id="phPeriodo">—</span></div>
-        <div class="row"><strong id="phDataLbl">Data:</strong> <span id="phData">—</span></div>
-        <div class="row"><strong id="phTempoLbl">Tempo:</strong> <span id="phTempo">—</span></div>
-        <div class="row"><strong id="phNotaLbl">Pontuação:</strong> <span id="phNota">—</span></div>
+<main class="wrap" id="app">
+  <!-- Cabeçalho impresso -->
+  <section id="printHeader" class="card">
+    <h2 id="printTitle">Renova DF — Gabarito</h2>
+    <div class="grid">
+      <div class="row"><strong id="phAlunoLbl">Aluno(a):</strong> <span id="phAluno">—</span></div>
+      <div class="row"><strong id="phPeriodoLbl">Período:</strong> <span id="phPeriodo">—</span></div>
+      <div class="row"><strong id="phDataLbl">Data:</strong> <span id="phData">—</span></div>
+      <div class="row"><strong id="phTempoLbl">Tempo:</strong> <span id="phTempo">—</span></div>
+      <div class="row"><strong id="phNotaLbl">Pontuação:</strong> <span id="phNota">—</span></div>
+    </div>
+  </section>
+
+  <!-- Gate / Apostila -->
+  <section class="card" id="gateCard">
+    <div class="gate-head">
+      <h2 class="section-title" id="gateTitle">Apostila resumida (leitura obrigatória)</h2>
+      <span class="pill" id="gateStatus">Leitura pendente</span>
+    </div>
+    <div class="gate-box" id="gateBox" aria-label="conteúdo da apostila (rolagem obrigatória)"></div>
+    <div class="gate-actions" style="margin-top:12px">
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" id="readConfirm" disabled />
+        <span id="readConfirmLabel"><strong>Li a apostila e estou pronto(a) para iniciar o quiz.</strong></span>
+      </label>
+      <button class="btn primary" id="startQuiz" disabled>Começar o quiz</button>
+      <button class="btn" id="printApostila">🖨️ Imprimir/Salvar PDF</button>
+      <span class="small" id="scrollHint">Role até o fim para habilitar a confirmação.</span>
+    </div>
+  </section>
+
+  <!-- Pontuação + Timer -->
+  <section class="card" id="scoreCard" style="display:none">
+    <div style="display:flex; align-items:center; gap:12px; justify-content:space-between">
+      <div>
+        <h2 class="section-title" id="scoreTitle">Pontuação</h2>
+        <p class="score"><span id="scoreText">—</span>/<span id="scoreTotal">0</span></p>
       </div>
-    </section>
-
-    <!-- Gate / Apostila -->
-    <section class="card" id="gateCard">
-      <div class="gate-head">
-        <h2 class="section-title" id="gateTitle">Apostila resumida (leitura obrigatória)</h2>
-        <span class="pill" id="gateStatus">Leitura pendente</span>
+      <div class="timer" aria-live="polite" id="timerWrap">
+        ⏱️ <span id="timerLabel">Tempo</span>:
+        <span id="timer">00:00</span>
       </div>
-      <div class="gate-box" id="gateBox" aria-label="conteúdo da apostila (rolagem obrigatória)"></div>
-      <div class="gate-actions" style="margin-top:12px">
-        <label style="display:flex; align-items:center; gap:8px;">
-          <input type="checkbox" id="readConfirm" disabled />
-          <span id="readConfirmLabel"><strong>Li a apostila e estou pronto(a) para iniciar o quiz.</strong></span>
-        </label>
-        <button class="btn primary" id="startQuiz" disabled>Começar o quiz</button>
-        <button class="btn" id="printApostila">🖨️ Imprimir/Salvar PDF</button>
-        <span class="small" id="scrollHint">Role até o fim para habilitar a confirmação.</span>
+    </div>
+  </section>
+
+  <!-- Banner: visto registrado -->
+  <section class="card success-banner" id="seenBanner" style="display:none">
+    <h3 id="seenTitle" style="margin-bottom:6px">Registro confirmado</h3>
+    <p id="seenBody" class="small">Sua nota foi X/Y e o visto foi registrado em DD/MM/AAAA HH:mm.</p>
+  </section>
+
+  <!-- Identificação -->
+  <section class="card" id="identCard" style="display:none">
+    <h2 class="section-title" id="identTitle">Identificação</h2>
+    <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr">
+      <div>
+        <label for="aluno" style="font-weight:600" id="labelAluno">Nome completo</label>
+        <input id="aluno" class="btn" style="width:100%; text-align:left" placeholder="Ex.: Ana Beatriz Silva" autocomplete="name" />
       </div>
-    </section>
-
-    <!-- Pontuação + Timer -->
-    <section class="card" id="scoreCard" style="display:none">
-      <div style="display:flex; align-items:center; gap:12px; justify-content:space-between">
-        <div>
-          <h2 class="section-title" id="scoreTitle">Pontuação</h2>
-          <p class="score"><span id="scoreText">—</span>/<span id="scoreTotal">0</span></p>
-        </div>
-        <div class="timer" aria-live="polite" id="timerWrap">
-          ⏱️ <span id="timerLabel">Tempo</span>:
-          <span id="timer">00:00</span>
-        </div>
+      <div>
+        <label for="periodo" style="font-weight:600" id="labelPeriodo">Período da turma</label>
+        <select id="periodo" class="btn" style="width:100%; text-align:left">
+          <option value="" id="optSelecione">Selecione…</option>
+          <option id="optManha">Manhã</option>
+          <option id="optTarde">Tarde</option>
+          <option id="optNoite">Noite</option>
+          <option id="optIntegral">Integral</option>
+        </select>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Banner: visto registrado -->
-    <section class="card success-banner" id="seenBanner" style="display:none">
-      <h3 id="seenTitle" style="margin-bottom:6px">Registro confirmado</h3>
-      <p id="seenBody" class="small">Sua nota foi X/Y e o visto foi registrado em DD/MM/AAAA HH:mm.</p>
-    </section>
+  <!-- Instruções (ANTES do quiz) -->
+  <section class="card" id="instCard" style="display:none">
+    <h2 class="section-title" id="instTitle">Instruções</h2>
+    <div id="instText"></div>
+  </section>
 
-    <!-- Identificação -->
-    <section class="card" id="identCard" style="display:none">
-      <h2 class="section-title" id="identTitle">Identificação</h2>
-      <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr">
-        <div>
-          <label for="aluno" style="font-weight:600" id="labelAluno">Nome completo</label>
-          <input id="aluno" class="btn" style="width:100%; text-align:left" placeholder="Ex.: Ana Beatriz Silva" autocomplete="name" />
-        </div>
-        <div>
-          <label for="periodo" style="font-weight:600" id="labelPeriodo">Período da turma</label>
-          <select id="periodo" class="btn" style="width:100%; text-align:left">
-            <option value="" id="optSelecione">Selecione…</option>
-            <option id="optManha">Manhã</option>
-            <option id="optTarde">Tarde</option>
-            <option id="optNoite">Noite</option>
-            <option id="optIntegral">Integral</option>
-          </select>
-        </div>
-      </div>
-    </section>
+  <!-- Quiz -->
+  <div id="sections" style="display:none"></div>
 
-    <!-- Instruções (ANTES do quiz) -->
-    <section class="card" id="instCard" style="display:none">
-      <h2 class="section-title" id="instTitle">Instruções</h2>
-      <div id="instText"></div>
-    </section>
+  <!-- Ações (APÓS a última pergunta) -->
+  <section class="card" id="actionsCard" style="display:none">
+    <div style="display:flex; flex-wrap:wrap; gap:10px">
+      <button class="btn good" id="finalizeQuiz">✅ Finalizar</button>
+      <button class="btn" id="showKey">📘 Gabarito</button>
+      <button class="btn good" id="markSeen" disabled>✔️ Receber visto & enviar</button>
+      <button class="btn warn" id="resetQuiz">↩️ Reiniciar</button>
+    </div>
+    <p class="small" style="margin-top:8px" id="afterTip"></p>
+  </section>
+</main>
 
-    <!-- Quiz -->
-    <div id="sections" style="display:none"></div>
+<!-- Rodapé com assinatura -->
+<footer class="renova-footer">
+  Criado por <strong>Marcelo Emanoel</strong>.
+</footer>
 
-    <!-- Ações (APÓS a última pergunta) -->
-    <section class="card" id="actionsCard" style="display:none">
-      <div style="display:flex; flex-wrap:wrap; gap:10px">
-        <button class="btn good" id="finalizeQuiz">✅ Finalizar</button>
-        <button class="btn" id="showKey">📘 Gabarito</button>
-        <button class="btn good" id="markSeen" disabled>✔️ Receber visto & enviar</button>
-        <button class="btn warn" id="resetQuiz">↩️ Reiniciar</button>
-      </div>
-      <p class="small" style="margin-top:8px" id="afterTip"></p>
-    </section>
-  </main>
+<!-- Botão scroll top -->
+<button class="scroll-top" id="scrollTop">⬆️</button>
 
-  <button class="scroll-top" id="scrollTop">⬆️</button>
+<!-- ===== Modal Parabéns ===== -->
+<div class="modal-overlay" id="modalVisto" role="dialog" aria-modal="true" aria-labelledby="modalVistoTitle" aria-hidden="true">
+  <div class="modal">
+    <div class="modal-head">
+      <span style="font-size:1.4rem">🎉</span>
+      <div id="modalVistoTitle">Parabéns! Você conquistou o visto ✅</div>
+    </div>
+    <div class="modal-body">
+      <p><strong>Excelente!</strong> Vamos registrar seu resultado.</p>
+      <p class="small" id="vistoStatus" style="margin-top:6px; opacity:.9">Enviando…</p>
+      <div class="confetti" id="confettiBox" aria-hidden="true"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-outline" id="btnVistoFechar">Fechar</button>
+      <button class="btn-solid" id="btnVistoOk">Ok, entendi</button>
+    </div>
+  </div>
+</div>
 
 <script>
 /* ====== CONFIG: endpoint da sua planilha ====== */
@@ -844,7 +975,7 @@ function bindDynamicHandlers(){
     t.classList.toggle('show');
     if(t.classList.contains('show')) speak(t.textContent);
   });
-  // Somente registra seçao; não bloqueia nem mostra correto/incorreto
+  // Somente registra seleção; não bloqueia nem mostra correto/incorreto
   document.querySelectorAll('.options').forEach((optGroup, qIdx)=>{
     optGroup.querySelectorAll('input[type="radio"]').forEach(input=>{
       input.onchange = () => {
@@ -944,36 +1075,73 @@ function fillPrintHeader(){
   phNota.textContent    = `${scoreText.textContent}/${scoreTotal.textContent}`;
 }
 
-/* ====== Envio para planilha + banner ====== */
+/* ====== Confete ====== */
+function makeConfetti(){
+  const box = document.getElementById('confettiBox'); if(!box) return;
+  box.innerHTML = '';
+  const pieces = 50;
+  const shapes = ['◆','●','■','▲','★'];
+  for(let i=0;i<pieces;i++){
+    const iEl = document.createElement('i');
+    iEl.textContent = shapes[Math.floor(Math.random()*shapes.length)];
+    iEl.style.left = Math.random()*100 + 'vw';
+    iEl.style.fontSize = (Math.random()*18+10) + 'px';
+    iEl.style.opacity = .7 + Math.random()*.3;
+    iEl.style.animationDelay = (Math.random()*0.8)+'s';
+    box.appendChild(iEl);
+  }
+}
+
+/* ====== Envio para planilha (único) + Modal ====== */
+function openModal(){ const el = document.getElementById('modalVisto'); if(el){ el.style.display='flex'; makeConfetti(); } }
+function closeModal(){ const el = document.getElementById('modalVisto'); if(el){ el.style.display='none'; } }
+
+function vistoKeyFor(aluno, turno, quiz){
+  const raw = `${(aluno||'').toLowerCase().trim()}|${(turno||'').toLowerCase().trim()}|${(quiz||'').toLowerCase().trim()}`;
+  return 'renova_visto_' + btoa(unescape(encodeURIComponent(raw)));
+}
+
 async function enviarParaPlanilha() {
   const L = I18N[currentLang];
-  try {
-    const quizName = `${L.headerTitle} (${currentLang.toUpperCase()})`;
-    const aluno = (document.getElementById('aluno')?.value || '').trim();
-    const turno = (document.getElementById('periodo')?.value || '').trim();
-    const nota  = `${document.getElementById('scoreText').textContent}/${document.getElementById('scoreTotal').textContent}`;
-    const datahora = new Date().toLocaleString(document.documentElement.lang || L.htmlLang || 'pt-BR');
+  const quizName = `${L.headerTitle} (${currentLang.toUpperCase()})`;
+  const aluno = (document.getElementById('aluno')?.value || '').trim();
+  const turno = (document.getElementById('periodo')?.value || '').trim();
+  const nota  = `${document.getElementById('scoreText').textContent}/${document.getElementById('scoreTotal').textContent}`;
+  const datahora = new Date().toLocaleString(document.documentElement.lang || L.htmlLang || 'pt-BR');
+  const statusEl = document.getElementById('vistoStatus');
 
-    if (!aluno || !turno) { alert(L.alerts.fillNamePeriod); return; }
+  if (!aluno || !turno) { alert(L.alerts.fillNamePeriod); return; }
 
-    await fetch(SHEETS_ENDPOINT, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ quiz: quizName, aluno, nota, datahora, turno })
-    });
+  // Abre modal imediatamente
+  statusEl.textContent = 'Enviando…';
+  openModal();
 
-    markSeenBtn.disabled = true;
-    markSeenBtn.textContent = L.markSeenDone;
-
-    seenTitle.textContent = L.seenTitle;
-    seenBody.innerHTML = L.seenBody(nota, datahora);
-    seenBanner.style.display = '';
-
-    alert(L.alerts.sendSuccess);
-  } catch (e) {
-    alert(L.alerts.sendFail);
+  const key = vistoKeyFor(aluno, turno, quizName);
+  if(localStorage.getItem(key)){
+    // Já registrado: só informa e não envia de novo
+    statusEl.textContent = 'Seu visto já havia sido registrado anteriormente ✅';
+  } else {
+    try{
+      await fetch(SHEETS_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quiz: quizName, aluno, nota, datahora, turno })
+      });
+      localStorage.setItem(key, '1');
+      statusEl.textContent = 'Registro concluído com sucesso na planilha ✅';
+    }catch(e){
+      statusEl.textContent = 'Não foi possível registrar agora. Tente novamente mais tarde.';
+    }
   }
+
+  // Atualiza UI final (banner, botão, etc.)
+  markSeenBtn.disabled = true;
+  markSeenBtn.textContent = L.markSeenDone;
+  seenTitle.textContent = L.seenTitle;
+  seenBody.innerHTML = L.seenBody(nota, datahora);
+  seenBanner.style.display = '';
+  alert(L.alerts.sendSuccess);
 }
 
 /* =========================
@@ -1077,6 +1245,7 @@ let fontScale=1;
 function applyFont(){ document.documentElement.style.setProperty('--fontScale', fontScale); }
 document.getElementById('fontPlus').onclick=()=>{ fontScale+=0.1; applyFont(); };
 document.getElementById('fontMinus').onclick=()=>{ fontScale=Math.max(0.8, fontScale-0.1); applyFont(); };
+
 const scrollBtn=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>{ scrollBtn.style.display = window.scrollY>200 ? 'block' : 'none'; });
 scrollBtn.onclick=()=> window.scrollTo({top:0,behavior:'smooth'});
@@ -1090,8 +1259,18 @@ document.getElementById('markSeen').onclick = ()=> enviarParaPlanilha();
 /* Dark mode toggle */
 darkBtn.onclick=()=>{ document.body.classList.toggle('dark'); };
 
+/* Print */
+printAp.addEventListener('click', ()=> window.print());
+
 /* Ensure voices are loaded */
 if ('speechSynthesis' in window) { speechSynthesis.onvoiceschanged = () => {}; }
+
+/* Modal controls */
+document.getElementById('btnVistoFechar')?.addEventListener('click', closeModal);
+document.getElementById('btnVistoOk')?.addEventListener('click', closeModal);
+document.getElementById('modalVisto')?.addEventListener('click', (e)=>{
+  if(e.target.id === 'modalVisto') closeModal();
+});
 
 /* Initial render */
 setLang('pt');
