@@ -159,9 +159,27 @@
     .rh-controls{ justify-content:flex-start; }
   }
 
-  /* Scroll top */
-  .scroll-top{ position:fixed; bottom:20px; right:20px; background:var(--brand-blue); color:white; border:none; padding:14px; border-radius:50%; cursor:pointer; box-shadow: var(--shadow); font-size:20px; display:none; transition: transform var(--transition), background var(--transition); }
-  .scroll-top:hover{ background: var(--brand-green); transform: translateY(-3px); }
+  /* ===== Botão Scroll Top (novo design) ===== */
+  .scroll-top{
+    position:fixed; bottom:22px; right:22px;
+    display:none; align-items:center; justify-content:center;
+    width:56px; height:56px; border-radius:16px;
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
+    color:#fff; border:1px solid rgba(255,255,255,.6);
+    box-shadow: 0 14px 28px rgba(0,0,0,.18), inset 0 0 0 2px rgba(255,255,255,.08);
+    cursor:pointer; transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+  }
+  .scroll-top:hover{ transform: translateY(-3px) scale(1.03); box-shadow: 0 18px 34px rgba(0,0,0,.25); }
+  .scroll-top:active{ transform: translateY(-1px) scale(.99); }
+  .scroll-top::after{
+    content: attr(data-tip);
+    position:absolute; bottom:66px; right:0;
+    background:#111827; color:#fff; font-size:.75rem; padding:6px 8px; border-radius:8px;
+    box-shadow: var(--shadow); opacity:0; transform: translateY(6px);
+    pointer-events:none; transition: .2s ease; white-space:nowrap;
+  }
+  .scroll-top:hover::after{ opacity:1; transform: translateY(0); }
+  .scroll-top svg{ width:22px; height:22px; }
 
   /* Success banner */
   .success-banner{
@@ -244,14 +262,14 @@
         <option value="es">🇪🇸 Español</option>
       </select>
 
-      <button class="btn" id="playApostila">🔊 Ler só a apostila</button>
-      <button class="btn primary" id="playAll" disabled>🔊 Ler tudo</button>
-      <button class="btn" id="stopVoice">⏹️ Parar</button>
+      <button class="btn" id="playApostila" type="button">🔊 Ler só a apostila</button>
+      <button class="btn primary" id="playAll" type="button" disabled>🔊 Ler tudo</button>
+      <button class="btn" id="stopVoice" type="button">⏹️ Parar</button>
 
-      <button class="btn" id="fontPlus">A+</button>
-      <button class="btn" id="fontMinus">A-</button>
+      <button class="btn" id="fontPlus" type="button">A+</button>
+      <button class="btn" id="fontMinus" type="button">A-</button>
 
-      <button class="btn" id="toggleDark" title="Modo escuro">🌙 Dark</button>
+      <button class="btn" id="toggleDark" type="button" title="Modo escuro">🌙 Dark</button>
     </div>
   </div>
 </header>
@@ -281,8 +299,8 @@
         <input type="checkbox" id="readConfirm" disabled />
         <span id="readConfirmLabel"><strong>Li a apostila e estou pronto(a) para iniciar o quiz.</strong></span>
       </label>
-      <button class="btn primary" id="startQuiz" disabled>Começar o quiz</button>
-      <button class="btn" id="printApostila">🖨️ Imprimir/Salvar PDF</button>
+      <button class="btn primary" id="startQuiz" type="button" disabled>Começar o quiz</button>
+      <button class="btn" id="printApostila" type="button">🖨️ Imprimir/Salvar PDF</button>
       <span class="small" id="scrollHint">Role até o fim para habilitar a confirmação.</span>
     </div>
   </section>
@@ -340,10 +358,10 @@
   <!-- Ações (APÓS a última pergunta) -->
   <section class="card" id="actionsCard" style="display:none">
     <div style="display:flex; flex-wrap:wrap; gap:10px">
-      <button class="btn good" id="finalizeQuiz">✅ Finalizar</button>
-      <button class="btn" id="showKey">📘 Gabarito</button>
-      <button class="btn good" id="markSeen" disabled>✔️ Receber visto & enviar</button>
-      <button class="btn warn" id="resetQuiz">↩️ Reiniciar</button>
+      <button class="btn good" id="finalizeQuiz" type="button">✅ Finalizar</button>
+      <button class="btn" id="showKey" type="button">📘 Gabarito</button>
+      <button class="btn good" id="markSeen" type="button" disabled>✔️ Receber visto & enviar</button>
+      <button class="btn warn" id="resetQuiz" type="button">↩️ Reiniciar</button>
     </div>
     <p class="small" style="margin-top:8px" id="afterTip"></p>
   </section>
@@ -354,8 +372,13 @@
   Criado por <strong>Marcelo Emanoel</strong>.
 </footer>
 
-<!-- Botão scroll top -->
-<button class="scroll-top" id="scrollTop">⬆️</button>
+<!-- Botão scroll top (novo design) -->
+<button class="scroll-top" id="scrollTop" type="button" aria-label="Voltar ao topo" data-tip="Voltar ao topo" title="Voltar ao topo">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
 
 <!-- ===== Modal Parabéns ===== -->
 <div class="modal-overlay" id="modalVisto" role="dialog" aria-modal="true" aria-labelledby="modalVistoTitle" aria-hidden="true">
@@ -370,8 +393,8 @@
       <div class="confetti" id="confettiBox" aria-hidden="true"></div>
     </div>
     <div class="modal-actions">
-      <button class="btn-outline" id="btnVistoFechar">Fechar</button>
-      <button class="btn-solid" id="btnVistoOk">Ok, entendi</button>
+      <button class="btn-outline" id="btnVistoFechar" type="button">Fechar</button>
+      <button class="btn-solid" id="btnVistoOk" type="button">Ok, entendi</button>
     </div>
   </div>
 </div>
@@ -487,7 +510,7 @@ const I18N = {
       <ul>
         <li>Compressor + pistola → acabamento uniforme e rápido (usar respirador e ventilação).</li>
         <li>Equipamentos <strong>airless</strong>: pulverização por alta pressão sem ar.</li>
-        <li><strong>Rendimento</strong>: m² por litro por demão — use a embalagem para calcular a quantidade.</li>
+        <li><strong>Rendimento</strong>: m² por litro por demão — use o rótulo para calcular a quantidade.</li>
       </ul>
     `,
     data: [
@@ -508,7 +531,7 @@ const I18N = {
       { t:"15) Cores secundárias são formadas por:", a:["Mistura de duas primárias","Mistura de preto com branco","Primária com preto","Mistura aleatória"], c:0, hint:"Laranja, verde e violeta." },
       { t:"16) Exemplo de cor terciária:", a:["Azul puro","Vermelho-arroxeado (primária + secundária adjacente)","Preto","Branco"], c:1, hint:"Primária + secundária vizinha." },
       { t:"17) Vantagem do compressor doméstico:", a:["Reduz EPIs","Permite pistola (spray) com acabamento uniforme e rápido","Dispensa preparo da superfície","Substitui selador"], c:1, hint:"Produtividade com segurança respiratória." },
-      { t:"18) “Rendimento” significa:", a:["Tempo de secagem ao toque","Área coberta por litro por demão (m²/L/demão)","Quantidade de solvente","Espessura do rolo"], c:1, hint:"Use o rendimento da embalagem para calcular latas." },
+      { t:"18) “Rendimento” significa:", a:["Tempo de secagem ao toque","Área coberta por litro por demão (m²/L/demão)","Quantidade de solvente","Espessura do rolo"], c:1, hint:"Use o rótulo para calcular a quantidade." },
       { t:"19) Complete: As cores primárias são consideradas as ________.", a:["secundárias","matrizes (cores-mãe)","pastéis","complementares"], c:1, hint:"Também chamadas de cores-mãe." },
       { t:"20) Complete: São equipamentos com sistema __________, “sem ar”.", a:["HVLP","airless","turbo","centrífugo"], c:1, hint:"Airless = pulverização por alta pressão sem mistura de ar." },
     ]
@@ -680,7 +703,7 @@ const I18N = {
     alerts: {
       fillNamePeriod: 'Completa nombre y turno antes de enviar.',
       sendSuccess: 'Visto registrado y resultado enviado a la hoja.',
-      sendFail: 'No fue posible enviar ahora. Revisa internet/endpoint.',
+      sendFail: 'No fue possível enviar ahora. Revisa internet/endpoint.',
       answerAll: 'Responde todas las preguntas antes de finalizar.',
       keyAfterFinish: 'El gabarito solo puede mostrarse después de finalizar el quiz.'
     },
@@ -1023,7 +1046,12 @@ function finalizeQuiz(){
   finalizeBtn.disabled = true;
   markSeenBtn.disabled = false;
 
-  window.scrollTo({top: scoreCard.offsetTop - 10, behavior:'smooth'});
+  // >>> Mudança: levar o usuário PARA AS AÇÕES (onde está "Receber visto & enviar") <<<
+  if (actionsCard && typeof actionsCard.scrollIntoView === 'function') {
+    actionsCard.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  // E focar o botão de enviar visto para facilitar o clique
+  setTimeout(()=>{ try{ markSeenBtn.focus(); }catch(_){} }, 450);
 }
 
 /* ====== Answer key (apenas após finalizar) ====== */
@@ -1213,7 +1241,10 @@ startQuiz.addEventListener('click', ()=>{
   seenBanner.style.display = 'none';
   scoreText.textContent = '—';
   startTimer();
-  window.scrollTo({top: scoreCard.offsetTop - 10, behavior:'smooth'});
+  // Mantém o usuário próximo das perguntas quando iniciar
+  if (sec && typeof sec.scrollIntoView === 'function') {
+    sec.scrollIntoView({behavior:'smooth', block:'start'});
+  }
 });
 
 /* =========================
@@ -1247,20 +1278,20 @@ document.getElementById('fontPlus').onclick=()=>{ fontScale+=0.1; applyFont(); }
 document.getElementById('fontMinus').onclick=()=>{ fontScale=Math.max(0.8, fontScale-0.1); applyFont(); };
 
 const scrollBtn=document.getElementById('scrollTop');
-window.addEventListener('scroll',()=>{ scrollBtn.style.display = window.scrollY>200 ? 'block' : 'none'; });
+window.addEventListener('scroll',()=>{ scrollBtn.style.display = window.scrollY>200 ? 'flex' : 'none'; });
 scrollBtn.onclick=()=> window.scrollTo({top:0,behavior:'smooth'});
 
 /* Click handlers (rodapé) */
-document.getElementById('showKey').onclick = ()=> showAnswerKey();
-document.getElementById('resetQuiz').onclick = ()=> resetQuiz();
-document.getElementById('finalizeQuiz').onclick = ()=> finalizeQuiz();
-document.getElementById('markSeen').onclick = ()=> enviarParaPlanilha();
+document.getElementById('showKey').onclick = (e)=> { e.preventDefault?.(); showAnswerKey(); };
+document.getElementById('resetQuiz').onclick = (e)=> { e.preventDefault?.(); resetQuiz(); };
+document.getElementById('finalizeQuiz').onclick = (e)=> { e.preventDefault?.(); finalizeQuiz(); };
+document.getElementById('markSeen').onclick = (e)=> { e.preventDefault?.(); enviarParaPlanilha(); };
 
 /* Dark mode toggle */
 darkBtn.onclick=()=>{ document.body.classList.toggle('dark'); };
 
 /* Print */
-printAp.addEventListener('click', ()=> window.print());
+printAp.addEventListener('click', (e)=> { e.preventDefault?.(); window.print(); });
 
 /* Ensure voices are loaded */
 if ('speechSynthesis' in window) { speechSynthesis.onvoiceschanged = () => {}; }
